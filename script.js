@@ -1,86 +1,106 @@
-console.log("Invoice generator loaded!");
+console.log("InvoiceGen V2 loaded!");
 
 
 // =========================
 // GET ELEMENTS
 // =========================
 
-const productsBody = document.getElementById("product-body");
-const addProduct = document.getElementById("add-product");
-const downloadInvoice = document.getElementById("download-invoice");
+const productsBody =
+    document.getElementById("product-body");
 
-const themeButton = document.getElementById("theme-button");
+const addProduct =
+    document.getElementById("add-product");
+
+const downloadInvoice =
+    document.getElementById("download-invoice");
+
+const whatsappButton =
+    document.getElementById("whatsapp-button");
+
+const themeButton =
+    document.getElementById("theme-button");
 
 
 // =========================
 // BUSINESS
 // =========================
 
-const businessName = document.getElementById("business-name");
-const businessEmail = document.getElementById("business-email");
+const businessName =
+    document.getElementById("business-name");
 
-const previewBusinessName = document.getElementById("preview-business-name");
-const previewBusinessEmail = document.getElementById("preview-business-email");
+const businessEmail =
+    document.getElementById("business-email");
+
+const previewBusinessName =
+    document.getElementById("preview-business-name");
+
+const previewBusinessEmail =
+    document.getElementById("preview-business-email");
 
 
 // =========================
 // CUSTOMER
 // =========================
 
-const customerName = document.getElementById("customer-name");
-const customerContact = document.getElementById("customer-email-phone");
+const customerName =
+    document.getElementById("customer-name");
 
-const customerNamePreview = document.getElementById("customer-name-preview");
-const customerContactPreview = document.getElementById("customer-contact-preview");
+const customerContact =
+    document.getElementById("customer-email-phone");
+
+const customerNamePreview =
+    document.getElementById("customer-name-preview");
+
+const customerContactPreview =
+    document.getElementById("customer-contact-preview");
 
 
 // =========================
 // INVOICE
 // =========================
 
-const invoice = document.getElementById("invoice");
-const date = document.getElementById("date");
+const invoice =
+    document.getElementById("invoice");
 
-const previewInvoice = document.getElementById("preview-invoice");
-const previewDate = document.getElementById("preview-date");
+const date =
+    document.getElementById("date");
+
+const previewInvoice =
+    document.getElementById("preview-invoice");
+
+const previewDate =
+    document.getElementById("preview-date");
 
 
 // =========================
-// PRODUCTS PREVIEW
+// PREVIEW
 // =========================
 
-const previewProductBody = document.getElementById("preview-product-body");
+const previewProductBody =
+    document.getElementById("preview-product-body");
 
-
-// =========================
-// GRAND TOTAL
-// =========================
-
-const invoiceTotal = document.querySelector(".invoice-total strong");
+const grandTotal =
+    document.getElementById("grand-total");
 
 
 // =========================
 // BUSINESS PREVIEW
 // =========================
 
-businessName.addEventListener("input", function() {
+businessName.addEventListener("input", function () {
 
-    if (businessName.value.trim() === "") {
-        previewBusinessName.textContent = "Business Name";
-    } else {
-        previewBusinessName.textContent = businessName.value;
-    }
+    previewBusinessName.textContent =
+        businessName.value.trim() ||
+        "Business Name";
 
 });
 
 
-businessEmail.addEventListener("input", function() {
+businessEmail.addEventListener("input", function () {
 
-    if (businessEmail.value.trim() === "") {
-        previewBusinessEmail.textContent = "business@email.com";
-    } else {
-        previewBusinessEmail.textContent = businessEmail.value;
-    }
+    previewBusinessEmail.textContent =
+        businessEmail.value.trim() ||
+        "business@email.com";
 
 });
 
@@ -89,39 +109,33 @@ businessEmail.addEventListener("input", function() {
 // CUSTOMER PREVIEW
 // =========================
 
-customerName.addEventListener("input", function() {
+customerName.addEventListener("input", function () {
 
-    if (customerName.value.trim() === "") {
-        customerNamePreview.textContent = "Customer Name";
-    } else {
-        customerNamePreview.textContent = customerName.value;
-    }
+    customerNamePreview.textContent =
+        customerName.value.trim() ||
+        "Customer Name";
 
 });
 
 
-customerContact.addEventListener("input", function() {
+customerContact.addEventListener("input", function () {
 
-    if (customerContact.value.trim() === "") {
-        customerContactPreview.textContent = "customer@email.com";
-    } else {
-        customerContactPreview.textContent = customerContact.value;
-    }
+    customerContactPreview.textContent =
+        customerContact.value.trim() ||
+        "customer@email.com";
 
 });
 
 
 // =========================
-// INVOICE PREVIEW
+// INVOICE NUMBER
 // =========================
 
-invoice.addEventListener("input", function() {
+invoice.addEventListener("input", function () {
 
-    if (invoice.value.trim() === "") {
-        previewInvoice.textContent = "INV-001";
-    } else {
-        previewInvoice.textContent = invoice.value;
-    }
+    previewInvoice.textContent =
+        invoice.value.trim() ||
+        "INV-001";
 
 });
 
@@ -130,73 +144,107 @@ invoice.addEventListener("input", function() {
 // DATE
 // =========================
 
-const today = new Date();
+const today =
+    new Date();
 
-const todayString = today.toISOString().split("T")[0];
+const todayString =
+    today.toISOString().split("T")[0];
 
-date.value = todayString;
+date.value =
+    todayString;
 
 
 function formatDate(dateValue) {
 
     if (!dateValue) {
+
         return "Date";
+
     }
 
-    const parts = dateValue.split("-");
+    const parts =
+        dateValue.split("-");
 
-    return parts[2] + "/" + parts[1] + "/" + parts[0];
+    return (
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+    );
 
 }
 
 
-previewDate.textContent = formatDate(date.value);
+previewDate.textContent =
+    formatDate(date.value);
 
 
-date.addEventListener("input", function() {
+date.addEventListener("input", function () {
 
-    previewDate.textContent = formatDate(date.value);
+    previewDate.textContent =
+        formatDate(date.value);
 
 });
 
 
 // =========================
-// PRODUCT PREVIEW
+// UPDATE PREVIEW PRODUCTS
 // =========================
 
 function updatePreviewProducts() {
 
     previewProductBody.innerHTML = "";
 
-    const rows = productsBody.querySelectorAll("tr");
+    const rows =
+        productsBody.querySelectorAll("tr");
 
-    rows.forEach(function(row) {
+
+    rows.forEach(function (row) {
 
         const productName =
-            row.querySelector('input[type="text"]').value.trim();
+            row.querySelector(".product-name").value.trim();
 
         const quantity =
             row.querySelector(".quantity").value;
 
         const price =
-            row.querySelector(".price").value;
+            Number(
+                row.querySelector(".price").value
+            ) || 0;
 
         const total =
-            row.querySelector(".product-total").textContent;
+            Number(quantity || 0) * price;
 
 
-        const previewRow = document.createElement("tr");
+        const previewRow =
+            document.createElement("tr");
 
 
         previewRow.innerHTML = `
-            <td>${productName || "Product"}</td>
-            <td>${quantity || "0"}</td>
-            <td>${price || "0.00"} DH</td>
-            <td>${total}</td>
+
+            <td>
+                ${productName || "Product"}
+            </td>
+
+            <td>
+                ${quantity || "0"}
+            </td>
+
+            <td>
+                ${price.toFixed(2)} DH
+            </td>
+
+            <td>
+                ${total.toFixed(2)} DH
+            </td>
+
         `;
 
 
-        previewProductBody.appendChild(previewRow);
+        previewProductBody.appendChild(
+            previewRow
+        );
 
     });
 
@@ -204,31 +252,40 @@ function updatePreviewProducts() {
 
 
 // =========================
-// GRAND TOTAL
+// UPDATE GRAND TOTAL
 // =========================
 
 function updateInvoiceTotal() {
 
-    let grandTotal = 0;
+    let total =
+        0;
 
-    const rows = productsBody.querySelectorAll("tr");
 
-    rows.forEach(function(row) {
+    const rows =
+        productsBody.querySelectorAll("tr");
+
+
+    rows.forEach(function (row) {
 
         const quantity =
-            Number(row.querySelector(".quantity").value) || 0;
+            Number(
+                row.querySelector(".quantity").value
+            ) || 0;
 
         const price =
-            Number(row.querySelector(".price").value) || 0;
+            Number(
+                row.querySelector(".price").value
+            ) || 0;
 
 
-        grandTotal += quantity * price;
+        total +=
+            quantity * price;
 
     });
 
 
-    invoiceTotal.textContent =
-        "Total: " + grandTotal.toFixed(2) + " DH";
+    grandTotal.textContent =
+        total.toFixed(2) + " DH";
 
 }
 
@@ -240,7 +297,7 @@ function updateInvoiceTotal() {
 function setupRow(row) {
 
     const productName =
-        row.querySelector('input[type="text"]');
+        row.querySelector(".product-name");
 
     const quantity =
         row.querySelector(".quantity");
@@ -255,10 +312,6 @@ function setupRow(row) {
         row.querySelector(".delete-product");
 
 
-    // =========================
-    // CALCULATE TOTAL
-    // =========================
-
     function calculateRowTotal() {
 
         const quantityValue =
@@ -266,6 +319,7 @@ function setupRow(row) {
 
         const priceValue =
             Number(price.value) || 0;
+
 
         const result =
             quantityValue * priceValue;
@@ -282,58 +336,73 @@ function setupRow(row) {
     }
 
 
-    // =========================
-    // PRODUCT NAME
-    // =========================
+    productName.addEventListener(
+        "input",
+        function () {
 
-    productName.addEventListener("input", function() {
+            updatePreviewProducts();
 
-        updatePreviewProducts();
-
-    });
-
-
-    // =========================
-    // QUANTITY
-    // =========================
-
-    quantity.addEventListener("input", function() {
-
-        calculateRowTotal();
-
-    });
+        }
+    );
 
 
-    // =========================
-    // PRICE
-    // =========================
+    quantity.addEventListener(
+        "input",
+        function () {
 
-    price.addEventListener("input", function() {
+            calculateRowTotal();
 
-        calculateRowTotal();
+        }
+    );
 
-    });
+
+    price.addEventListener(
+        "input",
+        function () {
+
+            calculateRowTotal();
+
+        }
+    );
 
 
-    // =========================
-    // DELETE PRODUCT
-    // =========================
+    deleteButton.addEventListener(
+        "click",
+        function () {
 
-    deleteButton.addEventListener("click", function() {
+            const rows =
+                productsBody.querySelectorAll("tr");
 
-        row.remove();
 
-        updatePreviewProducts();
+            if (rows.length === 1) {
 
-        updateInvoiceTotal();
+                productName.value = "";
 
-    });
+                quantity.value = 1;
+
+                price.value = "";
+
+                calculateRowTotal();
+
+                return;
+
+            }
+
+
+            row.remove();
+
+            updatePreviewProducts();
+
+            updateInvoiceTotal();
+
+        }
+    );
 
 }
 
 
 // =========================
-// FIRST PRODUCT
+// FIRST ROW
 // =========================
 
 const firstRow =
@@ -346,64 +415,87 @@ setupRow(firstRow);
 // ADD PRODUCT
 // =========================
 
-addProduct.addEventListener("click", function() {
+addProduct.addEventListener(
+    "click",
+    function () {
 
-    const row =
-        document.createElement("tr");
-
-
-    row.innerHTML = `
-        <td>
-            <input
-                type="text"
-                placeholder="Product name">
-        </td>
-
-        <td>
-            <input
-                type="number"
-                class="quantity"
-                placeholder="1"
-                min="1"
-                value="1">
-        </td>
-
-        <td>
-            <input
-                type="number"
-                class="price"
-                placeholder="0.00"
-                min="0"
-                step="0.01">
-        </td>
-
-        <td class="product-total">
-            0.00 DH
-        </td>
-
-        <td>
-            <button
-                type="button"
-                class="delete-product">
-                🗑️
-            </button>
-        </td>
-    `;
+        const row =
+            document.createElement("tr");
 
 
-    productsBody.appendChild(row);
+        row.innerHTML = `
 
-    setupRow(row);
+            <td>
 
-    updatePreviewProducts();
+                <input
+                    type="text"
+                    placeholder="Product name"
+                    class="product-name"
+                >
 
-    updateInvoiceTotal();
+            </td>
 
-});
+
+            <td>
+
+                <input
+                    type="number"
+                    class="quantity"
+                    min="1"
+                    value="1"
+                >
+
+            </td>
+
+
+            <td>
+
+                <input
+                    type="number"
+                    class="price"
+                    min="0"
+                    step="0.01"
+                    placeholder="0.00"
+                >
+
+            </td>
+
+
+            <td class="product-total">
+                0.00 DH
+            </td>
+
+
+            <td>
+
+                <button
+                    type="button"
+                    class="delete-product"
+                >
+                    🗑️
+                </button>
+
+            </td>
+
+        `;
+
+
+        productsBody.appendChild(row);
+
+
+        setupRow(row);
+
+
+        updatePreviewProducts();
+
+        updateInvoiceTotal();
+
+    }
+);
 
 
 // =========================
-// INITIAL PREVIEW
+// INITIAL UPDATE
 // =========================
 
 updatePreviewProducts();
@@ -415,30 +507,171 @@ updateInvoiceTotal();
 // DARK / LIGHT MODE
 // =========================
 
-themeButton.addEventListener("click", function() {
+themeButton.addEventListener(
+    "click",
+    function () {
 
-    document.body.classList.toggle("light-mode");
+        document.body.classList.toggle(
+            "light-mode"
+        );
 
 
-    if (document.body.classList.contains("light-mode")) {
+        if (
+            document.body.classList.contains(
+                "light-mode"
+            )
+        ) {
 
-        themeButton.textContent = "☀️";
+            themeButton.textContent =
+                "☀️";
 
-    } else {
+        } else {
 
-        themeButton.textContent = "🌙";
+            themeButton.textContent =
+                "🌙";
+
+        }
 
     }
-
-});
+);
 
 
 // =========================
-// DOWNLOAD / PRINT
+// DOWNLOAD PDF
 // =========================
 
-downloadInvoice.addEventListener("click", function() {
+downloadInvoice.addEventListener(
+    "click",
+    async function () {
 
-    window.print();
+        const invoiceElement =
+            document.querySelector(".invoice");
 
-});
+
+        const canvas =
+            await html2canvas(
+                invoiceElement,
+                {
+                    scale: 2,
+
+                    backgroundColor: "#ffffff"
+                }
+            );
+
+
+        const imageData =
+            canvas.toDataURL("image/png");
+
+
+        const {
+            jsPDF
+        } = window.jspdf;
+
+
+        const pdf =
+            new jsPDF(
+                "p",
+                "mm",
+                "a4"
+            );
+
+
+        const pageWidth =
+            pdf.internal.pageSize.getWidth();
+
+        const pageHeight =
+            pdf.internal.pageSize.getHeight();
+
+
+        const imageWidth =
+            pageWidth - 20;
+
+        const imageHeight =
+            canvas.height *
+            imageWidth /
+            canvas.width;
+
+
+        let finalHeight =
+            imageHeight;
+
+
+        if (
+            finalHeight >
+            pageHeight - 20
+        ) {
+
+            finalHeight =
+                pageHeight - 20;
+
+        }
+
+
+        pdf.addImage(
+            imageData,
+            "PNG",
+            10,
+            10,
+            imageWidth,
+            finalHeight
+        );
+
+
+        const invoiceNumber =
+            invoice.value.trim() ||
+            "INV-001";
+
+
+        pdf.save(
+            invoiceNumber + ".pdf"
+        );
+
+    }
+);
+
+
+// =========================
+// WHATSAPP
+// =========================
+
+whatsappButton.addEventListener(
+    "click",
+    function () {
+
+        const customer =
+            customerName.value.trim() ||
+            "there";
+
+
+        const invoiceNumber =
+            invoice.value.trim() ||
+            "INV-001";
+
+
+        const total =
+            grandTotal.textContent;
+
+
+        const message =
+
+`Hello ${customer},
+
+Here is your invoice ${invoiceNumber}.
+
+Total: ${total}
+
+Thank you for your business!`;
+
+        
+        const whatsappURL =
+            "https://wa.me/?text=" +
+            encodeURIComponent(message);
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    }
+);
