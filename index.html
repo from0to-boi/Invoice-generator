@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>🧾 Invoice Generator</title>
+</head>
+
+<body>
+
+    <!-- DARK MODE -->
+
+    <button id="theme-button">
+        🌙
+    </button>
+
+
+    <h1>Create professional invoices in seconds</h1>
+
+
+    <!-- BUSINESS INFORMATION -->
+
+    <section>
+
+        <h2>BUSINESS INFORMATION</h2>
+
+        <label for="business-name" class="person">
+            Business Name
+        </label>
+
+        <input
+            type="text"
+            id="business-name"
+            placeholder="Business name">
+
+        <label for="business-email" class="person">
+            Business Email
+        </label>
+
+        <input
+            type="email"
+            id="business-email"
+            placeholder="hello@business.com">
+
+    </section>
+
+
+    <!-- CUSTOMER INFORMATION -->
+
+    <section>
+
+        <h2>CUSTOMER INFORMATION</h2>
+
+        <label for="customer-name" class="person">
+            Name
+        </label>
+
+        <input
+            type="text"
+            id="customer-name"
+            placeholder="Mohamed">
+
+        <label for="customer-email-phone" class="person">
+            Email / Phone Number
+        </label>
+
+        <input
+            type="text"
+            id="customer-email-phone"
+            placeholder="123@gmail.com / +212xxxxxxxxx">
+
+    </section>
+
+
+    <!-- INVOICE DETAILS -->
+
+    <section>
+
+        <h2>INVOICE DETAILS</h2>
+
+        <label for="invoice" class="person">
+            Invoice #
+        </label>
+
+        <input
+            type="text"
+            id="invoice"
+            placeholder="INV-001">
+
+        <label for="date" class="pos">
+            Date
+        </label>
+
+        <input
+            type="date"
+            id="date">
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section>
+
+        <h2>PRODUCTS</h2>
+
+        <table id="products-table">
+
+            <thead>
+
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="product-body">
+
+                <tr>
+
+                    <td>
+                        <input
+                            type="text"
+                            placeholder="Product name">
+                    </td>
+
+                    <td>
+                        <input
+                            type="number"
+                            class="quantity"
+                            placeholder="1"
+                            min="1"
+                            value="1">
+                    </td>
+
+                    <td>
+                        <input
+                            type="number"
+                            class="price"
+                            placeholder="0.00"
+                            min="0"
+                            step="0.01">
+                    </td>
+
+                    <td class="product-total">
+                        0.00 DH
+                    </td>
+
+                    <td>
+                        <button
+                            type="button"
+                            class="delete-product">
+                            🗑️
+                        </button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- BUTTONS -->
+
+    <div class="button-container">
+
+        <button
+            type="button"
+            id="add-product">
+            + Add Product
+        </button>
+
+        <button
+            type="button"
+            id="download-invoice">
+            🧾 Download Invoice
+        </button>
+
+    </div>
+
+
+    <!-- INVOICE PREVIEW -->
+
+    <section class="invoice-preview">
+
+        <h2>INVOICE PREVIEW</h2>
+
+        <div class="invoice">
+
+            <h1>INVOICE</h1>
+
+
+            <!-- BUSINESS / INVOICE -->
+
+            <div class="invoice-info">
+
+                <div>
+
+                    <h3>Business</h3>
+
+                    <p id="preview-business-name">
+                        Business Name
+                    </p>
+
+                    <p id="preview-business-email">
+                        business@email.com
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <p>
+                        <strong>Invoice #:</strong>
+                    </p>
+
+                    <p id="preview-invoice">
+                        INV-001
+                    </p>
+
+                    <p>
+                        <strong>Date:</strong>
+                    </p>
+
+                    <p id="preview-date">
+                        02/09/2026
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOMER -->
+
+            <div class="customer-info">
+
+                <h3>Bill To</h3>
+
+                <p id="customer-name-preview">
+                    Customer Name
+                </p>
+
+                <p id="customer-contact-preview">
+                    customer@email.com
+                </p>
+
+            </div>
+
+
+            <!-- PRODUCT PREVIEW -->
+
+            <table id="preview-products">
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="preview-product-body">
+                </tbody>
+
+            </table>
+
+
+            <!-- TOTAL -->
+
+            <div class="invoice-total">
+
+                <strong>
+                    Total: 0.00 DH
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer">
+
+            <p>
+                © 2026 InvoiceGen Built by
+
+                <a
+                    href="https://www.instagram.com/from0to.boi/"
+                    target="_blank">
+                    from0to-boi
+                </a>
+
+                using HTML • CSS • JavaScript
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
